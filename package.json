@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --runInBand",
     "test:watch": "jest --watchAll --runInBand",
-    "dev": "npm run services:up && next dev",
+    "local": "npm run services:up && next dev",
     "services:up": "docker compose -f infra/compose.yaml up -d",
     "services:stop": "docker compose -f infra/compose.yaml stop",
     "services:down": "docker compose -f infra/compose.yaml down",
