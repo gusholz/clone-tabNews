@@ -6,14 +6,15 @@
   "scripts": {
     "test": "jest --runInBand",
     "test:watch": "jest --watchAll --runInBand",
-    "local": "npm run services:up && next dev",
+    "local": "npm run services:up && npm run wait-for-postgres && npm run migrations:up && next dev",
     "services:up": "docker compose -f infra/compose.yaml up -d",
     "services:stop": "docker compose -f infra/compose.yaml stop",
     "services:down": "docker compose -f infra/compose.yaml down",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "migration:create": "node-pg-migrate --migrations-dir infra/migrations create",
-    "migrations:up": "node-pg-migrate up -m infra/migrations --envPath .env.development up"
+    "migrations:up": "node-pg-migrate up -m infra/migrations --envPath .env.development up",
+    "wait-for-postgres": "node infra/scripts/wait-for-postgres.js"
   },
   "author": "gusholz",
   "license": "MIT",
