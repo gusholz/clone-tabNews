@@ -4,7 +4,7 @@
   "description": "Projeto Fullstack desenvolvido por gusholz",
   "main": "index.js",
   "scripts": {
-    "test": "npm run services:up && npm run wait-for-postgres && concurrently --names next,jest --hide next -k --success command-jest 'next dev' 'jest --runInBand'",
+    "test": "npm run services:up && concurrently --names next,jest --hide next -k --success command-jest 'next dev' 'jest --runInBand'",
     "test:watch": "jest --watchAll --runInBand",
     "local": "npm run services:up && npm run wait-for-postgres && npm run migrations:up && next dev",
     "services:up": "docker compose -f infra/compose.yaml up -d",

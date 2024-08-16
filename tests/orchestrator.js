@@ -11,6 +11,7 @@ export default async function waitForAllServices() {
       },
       {
         retries: 100,
+        maxTimeout: 5000,
       },
     );
   }
