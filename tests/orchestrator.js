@@ -7,7 +7,10 @@ export default async function waitForAllServices() {
     return retry(
       async () => {
         const response = await fetch("http://localhost:3000/api/v1/status");
-        const responseBody = response.json();
+
+        if (response.status !== 200) {
+          throw Error(`Error: invalid response status ${response.status}`);
+        }
       },
       {
         retries: 100,
