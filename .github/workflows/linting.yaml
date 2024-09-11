@@ -3,7 +3,7 @@ name: "Linting"
 on: pull_request
 
 jobs:
-  jest:
+  prettier:
     name: Prettier
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +32,7 @@ jobs:
       - run: npm run lint:eslint:check
 
   commitlint:
-    name: commitlint
+    name: Commitlint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,6 +43,7 @@ jobs:
         with:
           node-version: "lts/hydrogen"
 
-      - run: npm ci
+      - name: Install Required Dependencies
+        run: npm ci
 
       - run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
